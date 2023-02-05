@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'dagger.hilt.android.plugin'
     id 'kotlin-kapt'
 }
 
@@ -48,6 +49,7 @@ dependencies {
     implementation fragmentLib
 
     implementation daggerLib
+    implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
     kapt daggerCompiler
     annotationProcessor daggerAnnotation
     implementation hiltLib
