@@ -28,9 +28,9 @@
                     android:layout_marginTop="4dp"
                     android:gravity="center"
                     android:text="Post"
-                    android:textStyle="bold"
                     android:textColor="@color/white"
-                    android:textSize="@dimen/h2" />
+                    android:textSize="@dimen/h2"
+                    android:textStyle="bold" />
 
                 <androidx.appcompat.widget.SearchView
                     android:id="@+id/searchView"
@@ -38,33 +38,27 @@
                     android:layout_height="50dp"
                     android:layout_marginHorizontal="@dimen/default_gap"
                     android:layout_marginVertical="@dimen/minimum_gap"
-                    app:iconifiedByDefault="false"
                     android:background="@drawable/searchview_style"
-                    app:queryHint="Buscar Post"
-                    app:searchIcon="@drawable/ic_search"
+                    app:iconifiedByDefault="false"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/title" />
+                    app:layout_constraintTop_toBottomOf="@id/title"
+                    app:queryHint="Buscar Post"
+                    app:searchIcon="@drawable/ic_search" />
 
             </LinearLayout>
 
         </com.google.android.material.appbar.AppBarLayout>
 
-        <androidx.core.widget.NestedScrollView
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerview"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerview"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                tools:listitem="@layout/item_post"/>
-
-        </androidx.core.widget.NestedScrollView>
+            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
+            tools:listitem="@layout/item_post" />
 
         <com.google.android.material.progressindicator.CircularProgressIndicator
-            android:id="@+id/pets_progressBar"
+            android:id="@+id/progressBar"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_gravity="center"
