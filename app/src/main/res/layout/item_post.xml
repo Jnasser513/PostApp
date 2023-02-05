@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="@dimen/default_gap"
+    android:layout_marginTop="20dp"
+    app:cardCornerRadius="10dp"
+    app:cardElevation="4dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/default_gap">
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/h2"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:maxLines="1"
+            android:ellipsize="end"
+            tools:text="Title" />
+
+        <TextView
+            android:id="@+id/description"
+            android:layout_width="match_parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="@dimen/minimum_gap"
+            app:layout_constraintTop_toBottomOf="@id/title"
+            android:layout_height="wrap_content"
+            tools:text="Lorem ipsu  asflmekbhjgsdc jhbcnd kjbhjdn hbjcsfnkwbdjsnwbj sm ifds ksjhfjskf smdklfjkj asjkdhbjb n asdkjbhj asdjbhj aslkdbj adjkbhj nm asdljkbj askdkbnm aslkkjb"
+            android:maxLines="3"
+            android:ellipsize="end"/>
+
+        <ImageButton
+            android:id="@+id/btnImage"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/description"
+            android:layout_marginTop="@dimen/minimum_gap"
+            android:src="@drawable/ic_image"
+            android:background="@android:color/transparent"/>
+
+        <ImageButton
+            android:id="@+id/btnComments"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/ic_message"
+            app:layout_constraintStart_toEndOf="@id/btnImage"
+            app:layout_constraintTop_toTopOf="@id/btnImage"
+            app:layout_constraintBottom_toBottomOf="@id/btnImage"
+            android:background="@android:color/transparent"
+            android:layout_marginStart="@dimen/medium_gap"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>
