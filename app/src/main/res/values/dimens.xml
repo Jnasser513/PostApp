@@ -6,4 +6,6 @@
     <dimen name="default_gap">16dp</dimen>
     <dimen name="h2">18sp</dimen>
     <dimen name="medium_gap">32dp</dimen>
+    <dimen name="maximum_gap">64dp</dimen>
+    <dimen name="h4">14sp</dimen>
 </resources>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="comment"
+            type="latmobile.app.postapp.domain.response.PostCommentsResponse" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/default_gap">
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardBackgroundColor="@color/fourth_color"
+            app:cardCornerRadius="15dp"
+            app:cardElevation="4dp"
+            android:layout_marginEnd="@dimen/maximum_gap"
+            android:layout_marginStart="@dimen/default_gap"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@{comment.body}"
+                tools:text="g;lkgeibfdj kbojjhrkfndlntkrflnjwbrnf knf hbjvwf bnkwknbwjb  r,sev tnwr,kjbm snb nb bmbwr vn n rvfbfgbf fqebhjkjvbhjrknlkkbkvfndjknqre  kfbevjbk"
+                android:textSize="@dimen/h3"
+                android:textColor="@color/black"
+                android:padding="@dimen/default_gap"/>
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="josenasser2009@gmail.com"
+            app:layout_constraintStart_toStartOf="@id/card"
+            app:layout_constraintTop_toBottomOf="@id/card"
+            android:text="@{comment.email}"
+            android:layout_marginTop="4dp"
+            android:layout_marginStart="10dp"
+            android:textSize="@dimen/h4"
+            android:textColor="@color/black"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

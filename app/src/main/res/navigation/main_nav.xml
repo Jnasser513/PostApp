@@ -17,6 +17,13 @@
             app:exitAnim="@anim/to_right"
             app:popEnterAnim="@anim/from_right"
             app:popExitAnim="@anim/to_left" />
+        <action
+            android:id="@+id/action_postsFragment_to_postCommentsFragment"
+            app:destination="@id/postCommentsFragment"
+            app:enterAnim="@anim/from_left"
+            app:exitAnim="@anim/to_right"
+            app:popEnterAnim="@anim/from_right"
+            app:popExitAnim="@anim/to_left" />
     </fragment>
     <fragment
         android:id="@+id/postImagesFragment"
@@ -28,6 +35,17 @@
             app:argType="integer" />
         <action
             android:id="@+id/action_postImagesFragment_to_postsFragment"
+            app:destination="@id/postsFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left" />
+    </fragment>
+    <fragment
+        android:id="@+id/postCommentsFragment"
+        android:name="latmobile.app.postapp.view.ui.comment_post.PostCommentsFragment"
+        android:label="PostCommentsFragment"
+        tools:layout="@layout/post_comments_fragment">
+        <action
+            android:id="@+id/action_postCommentsFragment_to_postsFragment"
             app:destination="@id/postsFragment"
             app:enterAnim="@anim/from_right"
             app:exitAnim="@anim/to_left" />

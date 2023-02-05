@@ -9,7 +9,11 @@
         <entry key="..\:/Users/DEV LATMOBILE/Desktop/Android/PostApp/app/src/main/res/layout/activity_main.xml" value="0.3625" />
         <entry key="..\:/Users/DEV LATMOBILE/Desktop/Android/PostApp/app/src/main/res/layout/fragment_posts.xml" value="0.3614583333333333" />
         <entry key="..\:/Users/DEV LATMOBILE/Desktop/Android/PostApp/app/src/main/res/layout/item_post.xml" value="0.2965811965811966" />
+        <entry key="..\:/Users/DEV LATMOBILE/Desktop/Android/PostApp/app/src/main/res/layout/item_post_comment.xml" value="0.19895833333333332" />
+        <entry key="..\:/Users/DEV LATMOBILE/Desktop/Android/PostApp/app/src/main/res/layout/item_post_comment_left.xml" value="0.33" />
+        <entry key="..\:/Users/DEV LATMOBILE/Desktop/Android/PostApp/app/src/main/res/layout/item_post_comment_right.xml" value="0.33" />
         <entry key="..\:/Users/DEV LATMOBILE/Desktop/Android/PostApp/app/src/main/res/layout/item_post_image.xml" value="0.3614583333333333" />
+        <entry key="..\:/Users/DEV LATMOBILE/Desktop/Android/PostApp/app/src/main/res/layout/post_comments_fragment.xml" value="0.19895833333333332" />
         <entry key="..\:/Users/DEV LATMOBILE/Desktop/Android/PostApp/app/src/main/res/layout/post_images_fragment.xml" value="0.3614583333333333" />
         <entry key="..\:/Users/DEV LATMOBILE/Desktop/Android/PostApp/app/src/main/res/layout/posts_fragment.xml" value="0.3569230769230769" />
       </map>
