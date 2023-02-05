@@ -8,4 +8,6 @@ class PostRepository(
 
     suspend fun getPosts() = remotePostsDataSource.getPosts()
 
+    suspend fun getPostImages(idpost: Int) = remotePostsDataSource.getPostImages(idpost)
+
 }

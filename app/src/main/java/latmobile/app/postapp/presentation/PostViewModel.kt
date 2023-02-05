@@ -8,15 +8,18 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import latmobile.app.postapp.domain.response.ApiResponse
+import latmobile.app.postapp.domain.response.PostImageResponse
 import latmobile.app.postapp.domain.response.PostResponse
 import latmobile.app.postapp.domain.response.UIStatus
+import latmobile.app.postapp.interactors.GetPostImagesUseCase
 import latmobile.app.postapp.interactors.GetPostsUseCase
 import javax.inject.Inject
 
 @HiltViewModel
 class PostViewModel
 @Inject constructor(
-    private val getPostsUseCase: GetPostsUseCase
+    private val getPostsUseCase: GetPostsUseCase,
+    private val getPostImagesUseCase: GetPostImagesUseCase
 ): ViewModel() {
 
     private val _statusGetPosts = MutableLiveData<UIStatus<List<PostResponse>>?>()
@@ -27,6 +30,23 @@ class PostViewModel
         viewModelScope.launch(Dispatchers.IO) {
             _statusGetPosts.postValue(
                 when(val response = getPostsUseCase.invoke()) {
+                    is ApiResponse.EmptyList -> UIStatus.EmptyList(response.data)
+                    is ApiResponse.Error -> UIStatus.Error(response.exception)
+                    is ApiResponse.ErrorWithMessage -> UIStatus.ErrorWithMessage(response.message)
+                    is ApiResponse.Success -> UIStatus.Success(response.data)
+                }
+            )
+        }
+    }
+
+    private val _statusGetPostImages = MutableLiveData<UIStatus<List<PostImageResponse>>?>()
+    val statusGetPostImages: LiveData<UIStatus<List<PostImageResponse>>?> get() = _statusGetPostImages
+
+    fun getPostImages(idpost: Int) {
+        _statusGetPostImages.value = UIStatus.Loading("Cargando...")
+        viewModelScope.launch(Dispatchers.IO) {
+            _statusGetPostImages.postValue(
+                when(val response = getPostImagesUseCase.invoke(idpost)) {
                     is ApiResponse.EmptyList -> UIStatus.EmptyList(response.data)
                     is ApiResponse.Error -> UIStatus.Error(response.exception)
                     is ApiResponse.ErrorWithMessage -> UIStatus.ErrorWithMessage(response.message)

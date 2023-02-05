@@ -1,12 +1,16 @@
 package latmobile.app.postapp.view.ui.posts
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import latmobile.app.postapp.databinding.PostsFragmentBinding
 import latmobile.app.postapp.domain.response.PostResponse
@@ -23,6 +27,20 @@ class PostsFragment: Fragment() {
 
     private lateinit var postAdapter: PostsAdapter
 
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        val callback: OnBackPressedCallback =
+            object : OnBackPressedCallback(true) {
+                override fun handleOnBackPressed() {
+                    activity?.finish()
+                }
+            }
+        requireActivity().onBackPressedDispatcher.addCallback(
+            this,
+            callback
+        )
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -38,7 +56,9 @@ class PostsFragment: Fragment() {
 
     private fun setUpRecyclerView() {
         postAdapter = PostsAdapter({ imageClick ->
-
+            val direction = PostsFragmentDirections
+                .actionPostsFragmentToPostImagesFragment(imageClick)
+            findNavController().navigate(direction)
         }, { commentClick ->
 
         })

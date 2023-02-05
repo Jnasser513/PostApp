@@ -6,6 +6,7 @@ import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ViewModelComponent
 import dagger.hilt.android.scopes.ViewModelScoped
 import latmobile.app.postapp.data.repositories.PostRepository
+import latmobile.app.postapp.interactors.GetPostImagesUseCase
 import latmobile.app.postapp.interactors.GetPostsUseCase
 
 @Module
@@ -18,6 +19,14 @@ object UseCaseModule {
         postRepository: PostRepository
     ): GetPostsUseCase {
         return GetPostsUseCase(postRepository)
+    }
+
+    @ViewModelScoped
+    @Provides
+    fun provideGetPostImages(
+        postRepository: PostRepository
+    ): GetPostImagesUseCase {
+        return GetPostImagesUseCase(postRepository)
     }
 
 }

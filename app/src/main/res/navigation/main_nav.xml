@@ -9,5 +9,27 @@
         android:id="@+id/postsFragment"
         android:name="latmobile.app.postapp.view.ui.posts.PostsFragment"
         android:label="PostsFragment"
-        tools:layout="@layout/posts_fragment"/>
+        tools:layout="@layout/posts_fragment">
+        <action
+            android:id="@+id/action_postsFragment_to_postImagesFragment"
+            app:destination="@id/postImagesFragment"
+            app:enterAnim="@anim/from_left"
+            app:exitAnim="@anim/to_right"
+            app:popEnterAnim="@anim/from_right"
+            app:popExitAnim="@anim/to_left" />
+    </fragment>
+    <fragment
+        android:id="@+id/postImagesFragment"
+        android:name="latmobile.app.postapp.view.ui.image_post.PostImagesFragment"
+        android:label="PostImagesFragment"
+        tools:layout="@layout/post_images_fragment">
+        <argument
+            android:name="idpost"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_postImagesFragment_to_postsFragment"
+            app:destination="@id/postsFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left" />
+    </fragment>
 </navigation>
