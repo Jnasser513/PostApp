@@ -1,5 +1,6 @@
 package latmobile.app.postapp.presentation
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -8,9 +9,12 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import latmobile.app.postapp.domain.response.*
+import latmobile.app.postapp.framework.databasemanager.entity.PostImageEntity
+import latmobile.app.postapp.framework.databasemanager.mappers.toPostImageEntityList
 import latmobile.app.postapp.interactors.GetPostCommentsUseCase
 import latmobile.app.postapp.interactors.GetPostImagesUseCase
 import latmobile.app.postapp.interactors.GetPostsUseCase
+import latmobile.app.postapp.interactors.InsertPostImagesUseCase
 import javax.inject.Inject
 
 @HiltViewModel
@@ -18,7 +22,8 @@ class PostViewModel
 @Inject constructor(
     private val getPostsUseCase: GetPostsUseCase,
     private val getPostImagesUseCase: GetPostImagesUseCase,
-    private val getPostCommentsUseCase: GetPostCommentsUseCase
+    private val getPostCommentsUseCase: GetPostCommentsUseCase,
+    private val insertPostImagesUseCase: InsertPostImagesUseCase
 ): ViewModel() {
 
     private val _statusGetPosts = MutableLiveData<UIStatus<List<PostResponse>>?>()
@@ -33,6 +38,7 @@ class PostViewModel
                     is ApiResponse.Error -> UIStatus.Error(response.exception)
                     is ApiResponse.ErrorWithMessage -> UIStatus.ErrorWithMessage(response.message)
                     is ApiResponse.Success -> UIStatus.Success(response.data)
+                    else -> {UIStatus.ErrorWithMessage("Error de conección")}
                 }
             )
         }
@@ -49,7 +55,11 @@ class PostViewModel
                     is ApiResponse.EmptyList -> UIStatus.EmptyList(response.data)
                     is ApiResponse.Error -> UIStatus.Error(response.exception)
                     is ApiResponse.ErrorWithMessage -> UIStatus.ErrorWithMessage(response.message)
-                    is ApiResponse.Success -> UIStatus.Success(response.data)
+                    is ApiResponse.Success -> {
+                        insertImages(response.data!!.toPostImageEntityList())
+                        UIStatus.Success(response.data)
+                    }
+                    else -> {UIStatus.ErrorWithMessage("Error de conección")}
                 }
             )
         }
@@ -67,8 +77,16 @@ class PostViewModel
                     is ApiResponse.Error -> UIStatus.Error(response.exception)
                     is ApiResponse.ErrorWithMessage -> UIStatus.ErrorWithMessage(response.message)
                     is ApiResponse.Success -> UIStatus.Success(response.data)
+                    else -> {UIStatus.ErrorWithMessage("Error de conección")}
                 }
             )
+        }
+    }
+
+    private fun insertImages(images: List<PostImageEntity>) {
+        viewModelScope.launch(Dispatchers.IO) {
+            Log.d("ENTRO", "INSERT")
+            insertPostImagesUseCase.invoke(images)
         }
     }
 

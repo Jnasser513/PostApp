@@ -4,6 +4,7 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import latmobile.app.postapp.data.datasource.LocalPostsDataSource
 import latmobile.app.postapp.data.datasource.RemotePostsDataSource
 import latmobile.app.postapp.data.repositories.PostRepository
 import javax.inject.Singleton
@@ -15,9 +16,10 @@ object RepositoryModule {
     @Singleton
     @Provides
     fun providePostRepository(
-        remotePostsDataSource: RemotePostsDataSource
+        remotePostsDataSource: RemotePostsDataSource,
+        localPostsDataSource: LocalPostsDataSource
     ): PostRepository {
-        return PostRepository(remotePostsDataSource)
+        return PostRepository(remotePostsDataSource, localPostsDataSource)
     }
 
 }

@@ -5,6 +5,7 @@ import latmobile.app.postapp.domain.response.ApiResponse
 import latmobile.app.postapp.domain.response.PostCommentsResponse
 import latmobile.app.postapp.domain.response.PostImageResponse
 import latmobile.app.postapp.domain.response.PostResponse
+import latmobile.app.postapp.framework.databasemanager.dao.PostImageDao
 import latmobile.app.postapp.framework.requestmanager.APIServices
 import okio.IOException
 

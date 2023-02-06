@@ -3,11 +3,12 @@ package latmobile.app.postapp.framework.databasemanager.entity
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity(tableName = "post")
+@Entity(tableName = "post_table")
 data class PostImageEntity(
     @PrimaryKey
     val id: Int,
-    val userId: Int,
+    val albumId: Int,
     val title: String,
-    val body: String
+    val url: String,
+    val thumbnailUrl: String
 )

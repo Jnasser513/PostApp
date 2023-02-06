@@ -9,6 +9,7 @@ import latmobile.app.postapp.data.repositories.PostRepository
 import latmobile.app.postapp.interactors.GetPostCommentsUseCase
 import latmobile.app.postapp.interactors.GetPostImagesUseCase
 import latmobile.app.postapp.interactors.GetPostsUseCase
+import latmobile.app.postapp.interactors.InsertPostImagesUseCase
 
 @Module
 @InstallIn(ViewModelComponent::class)
@@ -36,6 +37,14 @@ object UseCaseModule {
         postRepository: PostRepository
     ): GetPostCommentsUseCase {
         return GetPostCommentsUseCase(postRepository)
+    }
+
+    @ViewModelScoped
+    @Provides
+    fun provideInsertImagesUseCase(
+        postRepository: PostRepository
+    ): InsertPostImagesUseCase {
+        return InsertPostImagesUseCase(postRepository)
     }
 
 }
