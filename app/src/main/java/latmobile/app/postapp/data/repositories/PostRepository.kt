@@ -17,4 +17,6 @@ class PostRepository(
 
     fun insertPostImages(images: List<PostImageEntity>) = localPostsDataSource.insertPostImages(images)
 
+    fun searchImagesByPostId(postid: Int) = localPostsDataSource.searchImagesByPostId(postid)
+
 }

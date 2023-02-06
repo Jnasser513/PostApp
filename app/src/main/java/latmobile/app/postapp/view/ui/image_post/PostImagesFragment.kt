@@ -14,6 +14,8 @@ import latmobile.app.postapp.databinding.PostImagesFragmentBinding
 import latmobile.app.postapp.domain.response.PostImageResponse
 import latmobile.app.postapp.domain.response.PostResponse
 import latmobile.app.postapp.domain.response.UIStatus
+import latmobile.app.postapp.framework.databasemanager.entity.PostImageEntity
+import latmobile.app.postapp.framework.databasemanager.mappers.toPostImageEntityList
 import latmobile.app.postapp.presentation.PostViewModel
 import latmobile.app.postapp.view.util.showShortToast
 
@@ -68,13 +70,18 @@ class PostImagesFragment: Fragment() {
         viewModel.statusGetPostImages.observe(viewLifecycleOwner) { status ->
             handleGetPostImageState(status)
         }
+
+        viewModel.statusGetPostImagesRoom.observe(viewLifecycleOwner) { status ->
+            handleGetPostImageRoomState(status)
+        }
     }
 
     private fun handleGetPostImageState(status: UIStatus<List<PostImageResponse>>?) {
         when(status) {
             is UIStatus.EmptyList -> {
                 endShowProgressBar()
-                postImagesAdapter.submitList(status.data!!)
+                binding.recyclerview.visibility = View.VISIBLE
+                postImagesAdapter.submitList(status.data!!.toPostImageEntityList())
             }
             is UIStatus.Error -> {
                 endShowProgressBar()
@@ -86,19 +93,50 @@ class PostImagesFragment: Fragment() {
             }
             is UIStatus.Loading -> {
                 showProgressBar()
+                binding.recyclerview.visibility = View.GONE
+                binding.titleProgress.text = status.message
             }
             is UIStatus.Success -> {
                 endShowProgressBar()
-                postImagesAdapter.submitList(status.data!!)
+                viewModel.searchImages(args.idpost)
+            }
+        }
+    }
+
+    private fun handleGetPostImageRoomState(status: UIStatus<List<PostImageEntity>>?) {
+        when(status) {
+            is UIStatus.EmptyList -> {
+                endShowProgressBar()
+                binding.recyclerview.visibility = View.VISIBLE
+                postImagesAdapter.submitList(status.data)
+            }
+            is UIStatus.Error -> {
+                endShowProgressBar()
+                requireContext().showShortToast(status.exception.message.toString())
+            }
+            is UIStatus.ErrorWithMessage -> {
+                endShowProgressBar()
+                requireContext().showShortToast(status.message)
+            }
+            is UIStatus.Loading -> {
+                showProgressBar()
+                binding.titleProgress.text = status.message
+            }
+            is UIStatus.Success -> {
+                endShowProgressBar()
+                binding.recyclerview.visibility = View.VISIBLE
+                postImagesAdapter.submitList(status.data)
             }
         }
     }
 
     private fun showProgressBar() {
+        binding.titleProgress.visibility = View.VISIBLE
         binding.progressBar.visibility = View.VISIBLE
     }
 
     private fun endShowProgressBar() {
+        binding.titleProgress.visibility = View.GONE
         binding.progressBar.visibility = View.GONE
     }
 

@@ -12,23 +12,24 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import latmobile.app.postapp.databinding.ItemPostImageBinding
 import latmobile.app.postapp.domain.response.PostImageResponse
+import latmobile.app.postapp.framework.databasemanager.entity.PostImageEntity
 import java.lang.Exception
 import java.net.URL
 import java.util.concurrent.Executors
 
-class PostImagesAdapter: ListAdapter<PostImageResponse, PostImagesAdapter.PostImagesViewHolder>(ITEM_COMPARATOR()) {
+class PostImagesAdapter: ListAdapter<PostImageEntity, PostImagesAdapter.PostImagesViewHolder>(ITEM_COMPARATOR()) {
 
     inner class PostImagesViewHolder(private val binding: ItemPostImageBinding): RecyclerView.ViewHolder(binding.root) {
-        fun bind(image: PostImageResponse) {
+        fun bind(image: PostImageEntity) {
             chargeImage(image.thumbnailUrl, binding.image)
         }
     }
 
-    class ITEM_COMPARATOR : DiffUtil.ItemCallback<PostImageResponse>() {
-        override fun areItemsTheSame(oldItem: PostImageResponse, newItem: PostImageResponse) =
+    class ITEM_COMPARATOR : DiffUtil.ItemCallback<PostImageEntity>() {
+        override fun areItemsTheSame(oldItem: PostImageEntity, newItem: PostImageEntity) =
             oldItem.id == newItem.id
 
-        override fun areContentsTheSame(oldItem: PostImageResponse, newItem: PostImageResponse) =
+        override fun areContentsTheSame(oldItem: PostImageEntity, newItem: PostImageEntity) =
             oldItem == newItem
     }
 

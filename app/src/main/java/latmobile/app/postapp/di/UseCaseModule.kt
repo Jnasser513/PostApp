@@ -6,10 +6,7 @@ import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ViewModelComponent
 import dagger.hilt.android.scopes.ViewModelScoped
 import latmobile.app.postapp.data.repositories.PostRepository
-import latmobile.app.postapp.interactors.GetPostCommentsUseCase
-import latmobile.app.postapp.interactors.GetPostImagesUseCase
-import latmobile.app.postapp.interactors.GetPostsUseCase
-import latmobile.app.postapp.interactors.InsertPostImagesUseCase
+import latmobile.app.postapp.interactors.*
 
 @Module
 @InstallIn(ViewModelComponent::class)
@@ -41,10 +38,18 @@ object UseCaseModule {
 
     @ViewModelScoped
     @Provides
-    fun provideInsertImagesUseCase(
+    fun provideInsertImages(
         postRepository: PostRepository
     ): InsertPostImagesUseCase {
         return InsertPostImagesUseCase(postRepository)
+    }
+
+    @ViewModelScoped
+    @Provides
+    fun provideSearchImages(
+        postRepository: PostRepository
+    ): SearchImagesByPostIdUseCase {
+        return SearchImagesByPostIdUseCase(postRepository)
     }
 
 }

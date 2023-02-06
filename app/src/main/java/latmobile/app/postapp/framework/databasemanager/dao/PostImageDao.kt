@@ -11,6 +11,6 @@ interface PostImageDao {
     fun insertPostImages(images: List<PostImageEntity>)
 
     @Query("SELECT * FROM post_table WHERE albumId = :idpost")
-    fun searchImages(idpost: Int): LiveData<List<PostImageEntity>>
+    fun searchImages(idpost: Int): List<PostImageEntity>
 
 }
