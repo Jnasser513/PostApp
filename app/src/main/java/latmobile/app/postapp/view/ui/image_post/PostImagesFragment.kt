@@ -73,19 +73,33 @@ class PostImagesFragment: Fragment() {
     private fun handleGetPostImageState(status: UIStatus<List<PostImageResponse>>?) {
         when(status) {
             is UIStatus.EmptyList -> {
+                endShowProgressBar()
                 postImagesAdapter.submitList(status.data!!)
             }
             is UIStatus.Error -> {
+                endShowProgressBar()
                 requireContext().showShortToast(status.exception.message.toString())
             }
             is UIStatus.ErrorWithMessage -> {
+                endShowProgressBar()
                 requireContext().showShortToast(status.message)
             }
-            is UIStatus.Loading -> {}
+            is UIStatus.Loading -> {
+                showProgressBar()
+            }
             is UIStatus.Success -> {
+                endShowProgressBar()
                 postImagesAdapter.submitList(status.data!!)
             }
         }
+    }
+
+    private fun showProgressBar() {
+        binding.progressBar.visibility = View.VISIBLE
+    }
+
+    private fun endShowProgressBar() {
+        binding.progressBar.visibility = View.GONE
     }
 
     override fun onDestroyView() {

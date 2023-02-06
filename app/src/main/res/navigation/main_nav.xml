@@ -49,5 +49,8 @@
             app:destination="@id/postsFragment"
             app:enterAnim="@anim/from_right"
             app:exitAnim="@anim/to_left" />
+        <argument
+            android:name="idpost"
+            app:argType="integer" />
     </fragment>
 </navigation>

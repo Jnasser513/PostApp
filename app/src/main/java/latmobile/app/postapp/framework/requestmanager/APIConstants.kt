@@ -6,5 +6,6 @@ object APIConstants {
 
     const val ENDPOINT_POSTS = "posts"
     const val ENDPOINT_POST_IMAGES = "posts/{idpost}/photos"
+    const val ENDPOINT_POST_COMMENTS = "posts/{idpost}/comments"
 
 }

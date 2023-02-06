@@ -60,7 +60,9 @@ class PostsFragment: Fragment() {
                 .actionPostsFragmentToPostImagesFragment(imageClick)
             findNavController().navigate(direction)
         }, { commentClick ->
-
+            val direction = PostsFragmentDirections
+                .actionPostsFragmentToPostCommentsFragment(commentClick)
+            findNavController().navigate(direction)
         })
 
         with(binding.recyclerview) {

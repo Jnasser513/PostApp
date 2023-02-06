@@ -1,5 +1,6 @@
 package latmobile.app.postapp.framework.requestmanager
 
+import latmobile.app.postapp.domain.response.PostCommentsResponse
 import latmobile.app.postapp.domain.response.PostImageResponse
 import latmobile.app.postapp.domain.response.PostResponse
 import retrofit2.Response
@@ -13,5 +14,8 @@ interface APIServices {
 
     @GET(APIConstants.ENDPOINT_POST_IMAGES)
     suspend fun getPostImages(@Path("idpost") idpost: Int): Response<List<PostImageResponse>>
+
+    @GET(APIConstants.ENDPOINT_POST_COMMENTS)
+    suspend fun getPostComments(@Path("idpost") idpost: Int): Response<List<PostCommentsResponse>>
 
 }
