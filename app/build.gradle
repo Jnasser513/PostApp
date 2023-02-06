@@ -60,6 +60,11 @@ dependencies {
     implementation livedataLib
     implementation lifecycleLib
 
+    implementation roomRuntime
+    implementation legacyLib
+    kapt roomCompiler
+    implementation roomLib
+
     implementation coroutinesLib
 
     implementation navigationLib
