@@ -87,7 +87,7 @@ class PostCommentsAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>(), Filt
                     val filteredList = ArrayList<PostCommentsResponse>()
                     commentsList
                         .filter {
-                            (it.body.lowercase().contains(constraint!!))
+                            (it.body.lowercase().contains(constraint!!)) || (it.email.lowercase().contains(constraint))
                         }
                         .forEach { filteredList.add(it) }
                     filteredList

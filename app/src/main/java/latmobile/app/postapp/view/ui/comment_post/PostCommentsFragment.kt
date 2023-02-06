@@ -8,6 +8,7 @@ import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import latmobile.app.postapp.databinding.PostCommentsFragmentBinding
@@ -62,6 +63,12 @@ class PostCommentsFragment: Fragment() {
             viewModel.getPosts()
             binding.searchView.setQuery("", false)
             binding.swipeRefresh.isRefreshing = false
+        }
+
+        binding.btnReturn.setOnClickListener {
+            val direction = PostCommentsFragmentDirections
+                .actionPostCommentsFragmentToPostsFragment()
+            findNavController().navigate(direction)
         }
 
         binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
